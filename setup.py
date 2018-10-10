@@ -27,7 +27,7 @@ def version():
 
 
 setup(
-    name='v3io_http',
+    name='v3io',
     version=version(),
     description='Client for v3io web API',
     long_description=open('README.md').read(),
@@ -35,8 +35,8 @@ setup(
     author='Yaron Haviv',
     author_email='yaronh@iguazio.com',
     license='MIT',
-    url='https://github.com/yaronha/v3io-py-http',
-    py_modules=['v3io_http'],
+    url='https://github.com/yaronha/v3iopy',
+    py_modules=['v3io'],
     install_requires=['requests'],
     classifiers=[
         'Development Status :: 4 - Beta',
