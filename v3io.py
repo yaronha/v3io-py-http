@@ -7,11 +7,11 @@ import json
 import os
 
 class v3io:
-    def __init__(self, address, user, password, container):
+    def __init__(self, address='', user='', password='', container=''):
         address = address or environ.get('V3IO_WEBAPI_SERVICE_HOST')
         user = user or environ.get('V3IO_USERNAME', 'iguazio')
         password = password or environ.get('V3IO_PASSWORD')
-        self.url = "http://" + address + "/"
+        self.url = "http://" + address + ":8081/"
         self.auth = (user, password)
         if container and container != "" :
             self.container = container + '/'
