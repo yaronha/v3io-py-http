@@ -35,6 +35,29 @@ class v3io:
 
         return requests.post(self.url +self.container +path, headers=headers, auth=self.auth, data=json.dumps(payload))
 
+    def seek(self, path, shard, seektype='LATEST', start_seq=0):
+        payload = { "Type": seektype }
+        if start_seq > 0 :
+            payload['StartingSequenceNumber'] = start_seq
+
+        headers = self._getheader('Seek')
+        if not path.endswith('/'):
+            path += '/'
+        path += shard
+
+        return requests.post(self.url +self.container +path, headers=headers, auth=self.auth, data=json.dumps(payload))
+
+
+    def getrecords(self, path, shard, location, limit=100):
+        payload = { "Location": location, "Limit": limit }
+
+        headers = self._getheader('GetRecords')
+        if not path.endswith('/'):
+            path += '/'
+        path += shard
+
+        return requests.post(self.url +self.container +path, headers=headers, auth=self.auth, data=json.dumps(payload))
+
     def updateitem(self, path, key, expr, condition):
         payload = { "UpdateExpression": expr, "ConditionExpression" : condition }
         headers = self._getheader('UpdateItem')
